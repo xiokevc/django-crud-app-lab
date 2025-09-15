@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Task List{% endblock %}
+
+{% block content %}
+  <h1>Tasks</h1>
+
+  {% if tasks %}
+    <ul>
+      {% for task in tasks %}
+        <li>
+          <strong>{{ task.title }}</strong>
+          {% if task.is_complete %}
+            <span style="color: green;">(Completed)</span>
+          {% else %}
+            <span style="color: red;">(Pending)</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No tasks available.</p>
+  {% endif %}
+
+  <a href="{% url 'task_create' %}">Create a new task</a>
+{% endblock %}

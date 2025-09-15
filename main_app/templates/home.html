@@ -1,0 +1,20 @@
+{% load static %}
+{% block title %}Home — Task Manager{% endblock %}
+{% block content %}
+  <h1>Welcome to Task Manager</h1>
+  <p>Track tasks and subtasks — built with Django.</p>
+
+  {% if user.is_authenticated %}
+    <h2>Your latest tasks</h2>
+    <ul>
+      {% for t in popular %}
+        <li><a href="{{ t.get_absolute_url }}">{{ t.title }}</a></li>
+      {% empty %}
+        <li>No tasks yet — <a href="{% url 'task_create' %}">create one</a>.</li>
+      {% endfor %}
+    </ul>
+    <p><a href="{% url 'task_index' %}">View all your tasks</a></p>
+  {% else %}
+    <p><a href="{% url 'login' %}">Log in</a> to manage tasks.</p>
+  {% endif %}
+{% endblock %}

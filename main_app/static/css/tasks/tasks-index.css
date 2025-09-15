@@ -1,0 +1,57 @@
+.calendar {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.calendar-day {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  background: #fafafa;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+}
+
+.day-header {
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-item {
+  background: #e9f5ff;
+  border: 1px solid #b3daff;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  padding: 4px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-item .pinned {
+  color: #ff6347;
+}
+
+.no-tasks {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+}
+

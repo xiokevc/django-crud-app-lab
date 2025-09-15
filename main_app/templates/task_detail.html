@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ task.title }}{% endblock %}
+{% block content %}
+  <h1>{{ task.title }}</h1>
+  <p>{{ task.description|linebreaks }}</p>
+  <p>Status: {{ task.is_complete|yesno:"Complete,Incomplete" }}</p>
+  <p>
+    <a href="{% url 'task_update' task.pk %}">Edit Task</a> |
+    <a href="{% url 'task_delete' task.pk %}">Delete Task</a>
+  </p>
+
+  <section>
+    <h2>Subtasks</h2>
+
+    <form method="post" action="{% url 'subtask_create' task.pk %}">
+      {% csrf_token %}
+      {{ subtask_form.as_p }}
+      <button type="submit">Add Subtask</button>
+    </form>
+
+    <ul>
+      {% for s in subtasks %}
+        <li>
+          {{ s.title }} — {% if s.is_done %}<em>done</em>{% else %}<em>todo</em>{% endif %}
+          — <a href="{% url 'subtask_update' s.pk %}">Edit</a>
+          — <a href="{% url 'subtask_delete' s.pk %}">Delete</a>
+        </li>
+      {% empty %}
+        <li>No subtasks yet.</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock %}
